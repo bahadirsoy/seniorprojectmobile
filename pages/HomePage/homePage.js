@@ -8,6 +8,7 @@ import Post from '../../components/Post/post';
 const HomePage = () => {
 
     const [posts, setPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(0)
 
     useEffect(() => {
         axios.get("https://bezkoder-server.herokuapp.com/api/getPosts", {
@@ -18,12 +19,24 @@ const HomePage = () => {
                 posts.push(post)
             })
             setPosts(posts)
+            setIsLoading(1)
         })
     })
 
     return(
         <View>
-            <Post/>
+            <Text>POSTLAR</Text>
+            {
+                posts ?
+                posts.map(post => {
+                    return(
+                        <Post
+                            images={post.images}
+                            postContent={post.postContent}
+                        />
+                    )
+                }) : null
+            }
         </View>
     )
 }
