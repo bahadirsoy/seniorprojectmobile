@@ -23,6 +23,10 @@ const SignInPage = (props) => {
     })
     .then(response => {
       if(response.data.isLoginSuccessful){
+        if(response && response.data && response.data.result.userId){
+          console.log("Üye girişi yapan kullanıcının idsi: "+response.data.result.userId.toString())
+          AsyncStorage.setItem("userId", response.data.result.userId.toString())
+        }
         props.navigation.navigate("HomePage")
       } else {
         console.log("hatalı şifre ustam şifa mı bu yoksa")

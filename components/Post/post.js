@@ -1,22 +1,32 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import styles from './post.styles.js'
-
+import Slideshow from 'react-native-image-slider-show';
 
 const Post = (props) => {
+
+    const [images, setImages] = useState([])
+    const [loadImages, setLoadImages] = useState(0)
+
+    useEffect(() => {
+        props.images.split(" ").map(imageUrl => {
+            images.push({
+                url: "https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/"+imageUrl
+            })
+        })
+        setImages(images)
+        setLoadImages(1)
+    }, [])
+
+
     return(
         <View>
             <Text>
-                Post
-                {console.log(props.images.split(" ")[0])}
-                {console.log(props.postContent)}
-                {console.log("---------------------")}
+                {props.postContent}
             </Text>
-            <Image
-                style={styles.postImage}
-                source={{
-                uri: `https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/1654681367676asda2.jpg`,
-            }}
+
+            <Slideshow 
+                dataSource={images}
             />
         </View>
     )
