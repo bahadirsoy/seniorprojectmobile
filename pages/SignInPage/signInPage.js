@@ -127,11 +127,11 @@ const SignInPage = (props) => {
       </View>
 
       <View style={styles.bottomAlert}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {props.navigation.navigate("SignUpPage")}} >
           <Text style={{fontSize: 18}}>
             Dont't have an account ?
 
-            <Text style={{color: "orange"}}> Sign in here</Text>
+            <Text style={{color: "orange"}}> Sign up here</Text>
           </Text>
         </TouchableOpacity>
       </View>
