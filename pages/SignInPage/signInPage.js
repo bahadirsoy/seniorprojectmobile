@@ -10,7 +10,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './signInPage.styles.js'
 
-const SignInPage = () => {
+const SignInPage = (props) => {
 
   const [hidePassword, triggerHidePassword] = useState(true)
 
@@ -22,7 +22,11 @@ const SignInPage = () => {
       password: password
     })
     .then(response => {
-      console.log(response.data)
+      if(response.data.isLoginSuccessful){
+        props.navigation.navigate("HomePage")
+      } else {
+        console.log("hatalı şifre ustam şifa mı bu yoksa")
+      }
     })
     .catch(error => {
       console.log(error)
@@ -45,7 +49,7 @@ const SignInPage = () => {
 
       <Formik
         initialValues={{
-          username: "soyisi",
+          username: "soyisi1",
           password: "123"
         }}
         validationSchema={Yup.object().shape({
