@@ -33,6 +33,7 @@ const HomePage = () => {
                 renderItem={({item}) => <Post
                     images={item.images}
                     postContent={item.postContent}
+                    userId={item.userId}
                 /> }
                 keyExtractor={(item) => item.postId}
             />
