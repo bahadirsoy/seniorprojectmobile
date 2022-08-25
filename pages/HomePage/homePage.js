@@ -6,6 +6,7 @@ import styles from './homePage.styles.js';
 
 //import components
 import Post from '../../components/Post/post';
+import Header from '../../components/Header/header.js';
 
 const HomePage = () => {
 
@@ -26,18 +27,8 @@ const HomePage = () => {
     }, [])
 
     return(
-        <View>
-            <View style={styles.header}>
-                <View style={styles.buttons}>
-                    <TouchableOpacity style={styles.profileButton}>
-                        <Text style={styles.buttonText}>Profile</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.logoutButton}>
-                        <Text style={styles.buttonText}>Log out</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+        <View style={styles.container}>
+            <Header/>
 
             <FlatList
                 data={posts}
