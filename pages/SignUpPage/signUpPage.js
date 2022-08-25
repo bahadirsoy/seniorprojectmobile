@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Formik } from 'formik';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUpPage = (props) => {
 
@@ -27,7 +28,17 @@ const SignUpPage = (props) => {
                     console.log("Username taken brom")
                 }
             } else{
-                console.log("signed up brom")
+                //get id of user
+                axios.get("https://bezkoder-server.herokuapp.com/api/getId", {
+                    params: {
+                        username: trimmedUsername
+                    }
+                })
+                .then((response) => {
+                    //set userId cookie after signed up
+                    AsyncStorage.setItem("userId", response.data[0].userId.toString())
+                    props.navigation.navigate("HomePage")
+                })
             }
         })
     }

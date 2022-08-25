@@ -23,7 +23,7 @@ const HomePage = () => {
             setPosts(posts)
             setIsLoading(1)
         })
-    })
+    }, [])
 
     return(
         <View>
@@ -33,6 +33,7 @@ const HomePage = () => {
                 posts.map(post => {
                     return(
                         <Post
+                            key={post.postId}
                             images={post.images}
                             postContent={post.postContent}
                         />
