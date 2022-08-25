@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './homePage.styles.js';
 
 //import components
 import Post from '../../components/Post/post';
@@ -26,7 +27,17 @@ const HomePage = () => {
 
     return(
         <View>
-            <Text>POSTLAR</Text>
+            <View style={styles.header}>
+                <View style={styles.buttons}>
+                    <TouchableOpacity style={styles.profileButton}>
+                        <Text style={styles.buttonText}>Profile</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.logoutButton}>
+                        <Text style={styles.buttonText}>Log out</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
             <FlatList
                 data={posts}
@@ -38,19 +49,7 @@ const HomePage = () => {
                 keyExtractor={(item) => item.postId}
             />
 
-            {
-                //print all posts
-                /*posts ?
-                posts.map(post => {
-                    return(
-                        <Post
-                            key={post.postId}
-                            images={post.images}
-                            postContent={post.postContent}
-                        />
-                    )
-                }) : null*/
-            }
+            
         </View>
     )
 }
