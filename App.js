@@ -17,6 +17,7 @@ import HomePage from './pages/HomePage/homePage';
 import SignUpPage from './pages/SignUpPage/signUpPage';
 import WelcomePage from './pages/WelcomePage/welcomePage';
 
+//variable for navigation
 const Stack = createNativeStackNavigator()
 
 export default function App() {

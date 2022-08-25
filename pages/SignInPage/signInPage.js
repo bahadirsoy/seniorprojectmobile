@@ -12,16 +12,20 @@ import styles from './signInPage.styles.js'
 
 const SignInPage = (props) => {
 
+  //hidePassword 
   const [hidePassword, triggerHidePassword] = useState(true)
 
   const login = (values) => {
+    //destructure sign in input values
     const {username, password} = values
 
+    //login api request
     axios.post("https://bezkoder-server.herokuapp.com/api/login",{
       username: username, 
       password: password
     })
     .then(response => {
+      //set cookie if login is successful, show error if not
       if(response.data.isLoginSuccessful){
         if(response && response.data && response.data.result.userId){
           console.log("Üye girişi yapan kullanıcının idsi: "+response.data.result.userId.toString())
