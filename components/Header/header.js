@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 
-const Header = () => {
+const Header = (props) => {
 
     //username
     const [username, setUsername] = useState('')
@@ -32,7 +32,7 @@ const Header = () => {
             </View>
 
             <View style={styles.buttons}>
-                <TouchableOpacity style={styles.profileButton}>
+                <TouchableOpacity style={styles.profileButton} onPress={() => {props.navigation.navigate("ProfilePage")}} >
                     <Text style={styles.buttonText}>Profile</Text>
                 </TouchableOpacity>
 

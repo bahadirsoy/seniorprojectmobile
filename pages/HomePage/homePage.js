@@ -8,7 +8,7 @@ import styles from './homePage.styles.js';
 import Post from '../../components/Post/post';
 import Header from '../../components/Header/header.js';
 
-const HomePage = () => {
+const HomePage = (props) => {
 
     //all posts informations
     const [posts, setPosts] = useState([])
@@ -28,7 +28,9 @@ const HomePage = () => {
 
     return(
         <View style={styles.container}>
-            <Header/>
+            <Header
+                navigation={props.navigation}
+            />
 
             <FlatList
                 data={posts}
