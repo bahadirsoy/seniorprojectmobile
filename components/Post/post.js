@@ -27,6 +27,7 @@ const Post = (props) => {
 
             <Slideshow 
                 dataSource={images}
+                height={300}
             />
         </View>
     )
