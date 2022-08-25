@@ -32,6 +32,11 @@ export default styles = StyleSheet.create({
         fontSize: 20,
         color: "black"
     },
+    hidePasswordIcon: {
+        position: "absolute",
+        right: 32,
+        top: 21
+    },
     alert: {
         alignItems: "center"
     },

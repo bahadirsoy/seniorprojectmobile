@@ -2,11 +2,14 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import styles from './signUpPage.styles.js'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Formik } from 'formik';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from 'react';
 
 const SignUpPage = (props) => {
+
+    const [hidePassword, toggleHidePassword] = useState(true)
 
     const signUp = (values) => {
         const {username, password, name, surname, email} = values
@@ -82,7 +85,11 @@ const SignUpPage = (props) => {
                                 placeholder="Password"
                                 onChangeText={handleChange("password")}
                                 value={password}
+                                secureTextEntry={hidePassword}
                             />
+                            <TouchableOpacity style={styles.hidePasswordIcon} onPress={() => {toggleHidePassword(!hidePassword)}} >
+                                <FontAwesomeIcon icon={ faEyeSlash } size={25} />
+                            </TouchableOpacity>
                         </View>
 
                         <View style={styles.inputItem}>
