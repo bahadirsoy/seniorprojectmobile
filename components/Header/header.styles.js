@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     welcomeUserText: {
-        fontSize: 20
+        fontSize: 16
     },
     buttons: {
         flexDirection: "row",
         justifyContent: "space-evenly",
-        flex: 2
+        flex: 1
     },
     profileButton: {
         backgroundColor: "lightblue",
