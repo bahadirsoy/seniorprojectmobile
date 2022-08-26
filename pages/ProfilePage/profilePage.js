@@ -23,8 +23,59 @@ const ProfilePage = () => {
     }, [])
 
     return(
-        <View>
-            <Text>brom</Text>
+        <View style={styles.container}>
+            <View style={styles.infoContainer}>
+                <Text style={styles.infoText}> Username: {userInfo.username}</Text>
+                <Text style={styles.infoText}> Surname: {userInfo.surname}</Text>
+                <Text style={styles.infoText}> E-mail: {userInfo.email}</Text>
+                <Text style={styles.infoText}> Phone: {userInfo.phone}</Text>
+            </View>
+
+            <View style={styles.updateContainer}>
+                {/*Update name*/}
+                <View style={styles.updateInputContainer}>
+                    <TextInput
+                        style={styles.updateInput}
+                        placeholder={userInfo.name}
+                    />
+                    <TouchableOpacity style={styles.updateButton}>
+                        <Text style={styles.updateButtonText}>Update name</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Update surname */}
+                <View style={styles.updateInputContainer}>
+                    <TextInput
+                        style={styles.updateInput}
+                        placeholder={userInfo.surname}
+                    />
+                    <TouchableOpacity style={styles.updateButton}>
+                        <Text style={styles.updateButtonText}>Update surname</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Update email */}
+                <View style={styles.updateInputContainer}>
+                    <TextInput
+                        style={styles.updateInput}
+                        placeholder={userInfo.email}
+                    />
+                    <TouchableOpacity style={styles.updateButton}>
+                        <Text style={styles.updateButtonText}>Update email</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Update phone */}
+                <View style={styles.updateInputContainer}>
+                    <TextInput
+                        style={styles.updateInput}
+                        placeholder={userInfo.phone}
+                    />
+                    <TouchableOpacity style={styles.updateButton}>
+                        <Text style={styles.updateButtonText}>Update phone</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
     )
 }
