@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import styles from './post.styles.js'
 import Slideshow from 'react-native-image-slider-show';
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
 
 const Post = (props) => {
 
@@ -12,6 +14,9 @@ const Post = (props) => {
 
     //post username
     const [username, setUsername] = useState('')
+
+    //comment count
+    const [commentCount, setCommentCount] = useState()
 
     //get getUsernameFromId
     const getUsernameFromId = (() => {
@@ -25,6 +30,18 @@ const Post = (props) => {
         })
     })
 
+    //get comment count
+    const getCommentCount = () => {
+        axios.get("https://bezkoder-server.herokuapp.com/api/getCommentCount", {
+            params: {
+                postId: props.postId
+            }
+        })
+        .then((response) => {
+            setCommentCount(response.data[0].count)
+        })
+    }
+
     useEffect(() => {
         //get all photo urls and assign it into images variable
         props.images.split(" ").map(imageUrl => {
@@ -35,7 +52,11 @@ const Post = (props) => {
         setImages(images)
         setLoadImages(1)
 
+        //get username
         getUsernameFromId()
+
+        //get comment count
+        getCommentCount()
     }, [])
 
 
@@ -53,6 +74,10 @@ const Post = (props) => {
                 dataSource={images}
                 height={300}
             />
+
+            <View style={styles.postDetails}>
+                <FontAwesomeIcon icon={ faComments } size={25} />
+            </View>
         </View>
     )
 }

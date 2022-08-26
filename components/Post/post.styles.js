@@ -15,5 +15,8 @@ export default styles = StyleSheet.create({
     },
     postContent: {
         marginVertical: 4
+    },
+    postDetails: {
+        backgroundColor: "pink"
     }
 });

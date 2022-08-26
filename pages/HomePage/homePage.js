@@ -38,6 +38,7 @@ const HomePage = (props) => {
                     images={item.images}
                     postContent={item.postContent}
                     userId={item.userId}
+                    postId={item.postId}
                 /> }
                 keyExtractor={(item) => item.postId}
             />
