@@ -5,6 +5,7 @@ import Slideshow from 'react-native-image-slider-show';
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { Badge } from '@react-native-material/core';
 
 const Post = (props) => {
 
@@ -16,7 +17,7 @@ const Post = (props) => {
     const [username, setUsername] = useState('')
 
     //comment count
-    const [commentCount, setCommentCount] = useState()
+    const [commentCount, setCommentCount] = useState(0)
 
     //get getUsernameFromId
     const getUsernameFromId = (() => {
@@ -75,8 +76,11 @@ const Post = (props) => {
                 height={300}
             />
 
-            <View style={styles.postDetails}>
-                <FontAwesomeIcon icon={ faComments } size={25} />
+            <View>
+                <TouchableOpacity style={styles.postDetails}>
+                    <FontAwesomeIcon icon={ faComments } color={"blue"} size={25} />
+                    <Badge label={commentCount > 0 ? commentCount : "No comment"} color="#03ffd5" style={styles.badge} labelStyle={styles.labelStyle} />
+                </TouchableOpacity>
             </View>
         </View>
     )

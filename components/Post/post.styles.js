@@ -17,6 +17,15 @@ export default styles = StyleSheet.create({
         marginVertical: 4
     },
     postDetails: {
-        backgroundColor: "pink"
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginHorizontal: 100,
+    },
+    badge: {
+        marginLeft: 5,
+    },
+    labelStyle: {
+        paddingHorizontal: 10,
     }
 });
