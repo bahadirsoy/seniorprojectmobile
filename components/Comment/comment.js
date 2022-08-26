@@ -26,11 +26,11 @@ const Comment = ({commentContent, userId}) => {
 
     return(
         <View style={styles.container}>
-            <TouchableOpacity>
-                <Text> {username} </Text>
+            <TouchableOpacity style={styles.username}>
+                <Text style={styles.usernameText}> {username} </Text>
             </TouchableOpacity>
 
-            <Text> {commentContent} </Text>
+            <Text style={styles.commentText}> {commentContent} </Text>
         </View>
     )
 }
