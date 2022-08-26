@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList } 
 import styles from './comments.styles.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import Comment from '../../components/Comment/comment.js';
 
 const CommentsPage = (props) => {
 
@@ -38,7 +39,10 @@ const CommentsPage = (props) => {
             <FlatList
                 data={comments}
                 renderItem={({item}) => 
-                    <Text>kank</Text>
+                    <Comment
+                        userId={item.userId}
+                        commentContent={item.commentContent}
+                    />
                 }
                 keyExtractor={(item) => item.postCommentId}
             />
