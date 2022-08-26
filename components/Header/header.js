@@ -25,6 +25,18 @@ const Header = (props) => {
         })
     }, [])
 
+    //logout
+    const logout = async (key) => {
+        try {
+            await AsyncStorage.removeItem(key);
+            props.navigation.navigate("WelcomePage")
+            return true;
+        }
+        catch(exception) {
+            console.log("olmadı aga")
+        }
+    }
+
     return(
         <View style={styles.header}>
             <View style={styles.welcomeUserView}>
@@ -36,7 +48,7 @@ const Header = (props) => {
                     <Text style={styles.buttonText}>Profile</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.logoutButton}>
+                <TouchableOpacity style={styles.logoutButton} onPress={() => {logout("userId")}} >
                     <Text style={styles.buttonText}>Log out</Text>
                 </TouchableOpacity>
             </View>
