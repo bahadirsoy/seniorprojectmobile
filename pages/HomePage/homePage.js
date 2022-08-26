@@ -39,6 +39,7 @@ const HomePage = (props) => {
                     postContent={item.postContent}
                     userId={item.userId}
                     postId={item.postId}
+                    navigation={props.navigation}
                 /> }
                 keyExtractor={(item) => item.postId}
             />

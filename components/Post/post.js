@@ -77,7 +77,7 @@ const Post = (props) => {
             />
 
             <View>
-                <TouchableOpacity style={styles.postDetails}>
+                <TouchableOpacity style={styles.postDetails} onPress={() => {props.navigation.navigate("CommentsPage")}} >
                     <FontAwesomeIcon icon={ faComments } color={"blue"} size={25} />
                     <Badge label={commentCount > 0 ? commentCount : "No comment"} color="#03ffd5" style={styles.badge} labelStyle={styles.labelStyle} />
                 </TouchableOpacity>
