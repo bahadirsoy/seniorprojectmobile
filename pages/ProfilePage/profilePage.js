@@ -22,13 +22,19 @@ const ProfilePage = () => {
         })
     }, [])
 
+    //update input variables
+    const [newName, setNewName] = useState('')
+    const [newSurname, setNewSurname] = useState('')
+    const [newEmail, setNewEmail] = useState('')
+    const [newPhone, setNewPhone] = useState('')
+
     return(
         <View style={styles.container}>
             <View style={styles.infoContainer}>
-                <Text style={styles.infoText}> Username: {userInfo.username}</Text>
-                <Text style={styles.infoText}> Surname: {userInfo.surname}</Text>
-                <Text style={styles.infoText}> E-mail: {userInfo.email}</Text>
-                <Text style={styles.infoText}> Phone: {userInfo.phone}</Text>
+                <Text style={styles.infoText}> Username: {userInfo ? userInfo.username : null}</Text>
+                <Text style={styles.infoText}> Surname: {userInfo ? userInfo.surname : null}</Text>
+                <Text style={styles.infoText}> E-mail: {userInfo ? userInfo.email : null}</Text>
+                <Text style={styles.infoText}> Phone: {userInfo ? userInfo.phone : null}</Text>
             </View>
 
             <View style={styles.updateContainer}>
@@ -36,7 +42,7 @@ const ProfilePage = () => {
                 <View style={styles.updateInputContainer}>
                     <TextInput
                         style={styles.updateInput}
-                        placeholder={userInfo.name}
+                        placeholder={userInfo ? userInfo.name : null}
                     />
                     <TouchableOpacity style={styles.updateButton}>
                         <Text style={styles.updateButtonText}>Update name</Text>
@@ -47,7 +53,7 @@ const ProfilePage = () => {
                 <View style={styles.updateInputContainer}>
                     <TextInput
                         style={styles.updateInput}
-                        placeholder={userInfo.surname}
+                        placeholder={userInfo ? userInfo.surname : null}
                     />
                     <TouchableOpacity style={styles.updateButton}>
                         <Text style={styles.updateButtonText}>Update surname</Text>
@@ -58,7 +64,7 @@ const ProfilePage = () => {
                 <View style={styles.updateInputContainer}>
                     <TextInput
                         style={styles.updateInput}
-                        placeholder={userInfo.email}
+                        placeholder={userInfo ? userInfo.email : null}
                     />
                     <TouchableOpacity style={styles.updateButton}>
                         <Text style={styles.updateButtonText}>Update email</Text>
@@ -69,7 +75,7 @@ const ProfilePage = () => {
                 <View style={styles.updateInputContainer}>
                     <TextInput
                         style={styles.updateInput}
-                        placeholder={userInfo.phone}
+                        placeholder={userInfo ? userInfo.phone : null}
                     />
                     <TouchableOpacity style={styles.updateButton}>
                         <Text style={styles.updateButtonText}>Update phone</Text>
