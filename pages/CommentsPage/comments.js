@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import styles from './comments.styles.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import Comment from '../../components/Comment/comment.js';
+import { TextInput, Button } from '@react-native-material/core';
 
 const CommentsPage = (props) => {
 
@@ -12,6 +13,9 @@ const CommentsPage = (props) => {
 
     //comments
     const [comments, setComments] = useState()
+
+    //new comment
+    const [newComment, setNewComment] = useState('')
 
     useEffect(() => {
         //get userId
@@ -34,8 +38,19 @@ const CommentsPage = (props) => {
         })
     }
 
+    //add comment
+    const addComment = () => {
+        axios.post('https://bezkoder-server.herokuapp.com/api/insertPostComment', {
+            newComment: newComment,
+            postId: props.route.params.postId,
+            userId: props.route.params.userId
+        }).then((response) => { //feedback from api
+            console.log(response.data)
+        })
+    }
+
     return(
-        <View>
+        <View style={styles.container}>
             <FlatList
                 data={comments}
                 renderItem={({item}) => 
@@ -46,6 +61,12 @@ const CommentsPage = (props) => {
                 }
                 keyExtractor={(item) => item.postCommentId}
             />
+
+            <View style={styles.newCommentView}>
+                <TextInput variant="outlined" label="Make a comment" style={styles.newComment} onChangeText={val => setNewComment(val)} />
+
+                <Button uppercase={false} title="Add" style={styles.makeCommentButton} onPress={() => addComment()} />
+            </View>
         </View>
     )
 }
