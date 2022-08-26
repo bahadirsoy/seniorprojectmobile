@@ -43,14 +43,18 @@ const CommentsPage = (props) => {
         axios.post('https://bezkoder-server.herokuapp.com/api/insertPostComment', {
             newComment: newComment,
             postId: props.route.params.postId,
-            userId: props.route.params.userId
+            userId: userId
         }).then((response) => { //feedback from api
-            console.log(response.data)
+            comments.push({
+                commentContent: newComment,
+                userId: userId
+            })
+            setComments(comments)
         })
     }
 
     return(
-        <View style={styles.container}>
+        <View style={styles.container}>{console.log(comments)}
             <FlatList
                 data={comments}
                 renderItem={({item}) => 
@@ -60,6 +64,7 @@ const CommentsPage = (props) => {
                     />
                 }
                 keyExtractor={(item) => item.postCommentId}
+                style={{marginBottom: 100}}
             />
 
             <View style={styles.newCommentView}>

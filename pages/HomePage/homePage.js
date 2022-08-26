@@ -14,7 +14,7 @@ const HomePage = (props) => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        //AsyncStorage.getItem("userId").then(val => console.log(val)) //print current users id
+        AsyncStorage.getItem("userId").then(val => console.log(val)) //print current users id
 
         //fetch all posts
         axios.get("https://bezkoder-server.herokuapp.com/api/getPosts", {
