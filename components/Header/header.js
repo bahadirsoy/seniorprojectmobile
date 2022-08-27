@@ -3,6 +3,7 @@ import styles from './header.styles.js'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
+import { ActivityIndicator } from 'react-native';
 
 const Header = (props) => {
 
@@ -40,7 +41,7 @@ const Header = (props) => {
     return(
         <View style={styles.header}>
             <View style={styles.welcomeUserView}>
-                <Text style={styles.welcomeUserText}>Welcome {username}</Text>
+                <Text style={styles.welcomeUserText}> {username ? "Welcome "+username : <ActivityIndicator size="small" color="error" />} </Text>
             </View>
 
             <View style={styles.buttons}>

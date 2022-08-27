@@ -3,6 +3,7 @@ import styles from './profilePage.styles.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { ActivityIndicator } from 'react-native';
 
 const ProfilePage = () => {
 
@@ -119,11 +120,11 @@ const ProfilePage = () => {
     return(
         <View style={styles.container}>
             <View style={styles.infoContainer}>
-                <Text style={styles.infoText}> Username: {userInfo ? userInfo.username : null}</Text>
-                <Text style={styles.infoText}> Name: {userInfo ? userInfo.name : null}</Text>
-                <Text style={styles.infoText}> Surname: {userInfo ? userInfo.surname : null}</Text>
-                <Text style={styles.infoText}> E-mail: {userInfo ? userInfo.email : null}</Text>
-                <Text style={styles.infoText}> Phone: {userInfo ? userInfo.phone : null}</Text>
+                <Text style={styles.infoText}> Username: {userInfo ? userInfo.username : <ActivityIndicator size="small" color="error" />}</Text>
+                <Text style={styles.infoText}> Name: {userInfo ? userInfo.name : <ActivityIndicator size="small" color="error" />}</Text>
+                <Text style={styles.infoText}> Surname: {userInfo ? userInfo.surname : <ActivityIndicator size="small" color="error" />}</Text>
+                <Text style={styles.infoText}> E-mail: {userInfo ? userInfo.email : <ActivityIndicator size="small" color="error" />}</Text>
+                <Text style={styles.infoText}> Phone: {userInfo ? userInfo.phone : <ActivityIndicator size="small" color="error" />}</Text>
             </View>
 
             <View style={styles.updateContainer}>

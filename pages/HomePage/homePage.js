@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './homePage.styles.js';
+import { ActivityIndicator } from '@react-native-material/core';
 
 //import components
 import Post from '../../components/Post/post';
@@ -14,7 +15,7 @@ const HomePage = (props) => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        AsyncStorage.getItem("userId").then(val => console.log(val)) //print current users id
+        //AsyncStorage.getItem("userId").then(val => console.log(val)) //print current users id
 
         //fetch all posts
         axios.get("https://bezkoder-server.herokuapp.com/api/getPosts", {
@@ -32,7 +33,9 @@ const HomePage = (props) => {
                 navigation={props.navigation}
             />
 
-            <FlatList
+            {
+                posts.length > 0 ?
+                <FlatList
                 data={posts}
                 renderItem={({item}) => <Post
                     images={item.images}
@@ -43,6 +46,8 @@ const HomePage = (props) => {
                 /> }
                 keyExtractor={(item) => item.postId}
             />
+            : <ActivityIndicator size="large" color="error" style={{marginTop: 50}} />
+            }
 
             
         </View>

@@ -54,7 +54,7 @@ const CommentsPage = (props) => {
     }
 
     return(
-        <View style={styles.container}>{console.log(comments)}
+        <View style={styles.container}>
             <FlatList
                 data={comments}
                 renderItem={({item}) => 
