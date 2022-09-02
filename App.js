@@ -18,6 +18,7 @@ import SignUpPage from './pages/SignUpPage/signUpPage';
 import WelcomePage from './pages/WelcomePage/welcomePage';
 import ProfilePage from './pages/ProfilePage/profilePage';
 import CommentsPage from './pages/CommentsPage/comments';
+import UserInformations from './pages/UserInformationsPage/userInformations';
 
 //variable for navigation
 const Stack = createNativeStackNavigator()
@@ -34,6 +35,7 @@ export default function App() {
         <Stack.Screen name="SignUpPage" component={SignUpPage}></Stack.Screen>
         <Stack.Screen name="ProfilePage" component={ProfilePage}></Stack.Screen>
         <Stack.Screen name="CommentsPage" component={CommentsPage}></Stack.Screen>
+        <Stack.Screen name="UserInformationsPage" component={UserInformations}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
     
