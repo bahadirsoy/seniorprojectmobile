@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import Comment from '../../components/Comment/comment.js';
 import { TextInput, Button } from '@react-native-material/core';
+import uuid from 'react-native-uuid';
 
 const CommentsPage = (props) => {
 
@@ -46,10 +47,12 @@ const CommentsPage = (props) => {
             userId: userId
         }).then((response) => { //feedback from api
             comments.push({
+                postCommentId: uuid.v4(),
                 commentContent: newComment,
                 userId: userId
             })
             setComments(comments)
+            setNewComment("")
         })
     }
 
@@ -68,7 +71,7 @@ const CommentsPage = (props) => {
             />
 
             <View style={styles.newCommentView}>
-                <TextInput variant="outlined" label="Make a comment" style={styles.newComment} onChangeText={val => setNewComment(val)} />
+                <TextInput variant="outlined" label="Make a comment" style={styles.newComment} onChangeText={val => setNewComment(val)} value={newComment} />
 
                 <Button uppercase={false} title="Add" style={styles.makeCommentButton} onPress={() => addComment()} />
             </View>
