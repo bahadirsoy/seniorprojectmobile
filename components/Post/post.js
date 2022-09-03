@@ -63,9 +63,13 @@ const Post = (props) => {
 
     return(
         <View style={styles.postContainer}>
-            <Text style={styles.username}>
-                {username}
-            </Text>
+            <TouchableOpacity onPress={() => props.navigation.navigate("UserInformationsPage", {
+                userId: props.userId
+            })}>
+                <Text style={styles.username}>
+                    {username}
+                </Text>
+            </TouchableOpacity>
 
             <Text style={styles.postContent}>
                 {props.postContent}

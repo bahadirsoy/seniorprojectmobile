@@ -3,11 +3,17 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import styles from './userInformations.styles.js'
 
 const UserInformations = () => {
-    <View>
-        <Text>
-            ui
-        </Text>
-    </View>
+    return(
+        <View style={styles.container}>
+            <View style={styles.infoContainer}>
+                <Text style={styles.infoText}> Username: </Text>
+                <Text style={styles.infoText}> Name: </Text>
+                <Text style={styles.infoText}> Surname: </Text>
+                <Text style={styles.infoText}> E-mail: </Text>
+                <Text style={styles.infoText}> Phone: </Text>
+            </View>
+        </View>
+    )
 }
 
 export default UserInformations
