@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     infoContainer: {
-        flex:1,
         marginTop: "10%"
     },
     infoText:{
@@ -13,6 +12,21 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         marginHorizontal: 20
     },
+    newCommentView: {
+        position: "absolute",
+        bottom: 10,
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 10
+    },
+    newComment: {
+        width: "80%",
+        paddingHorizontal: 15
+    },
+    makeCommentButton: {
+        width: "20%",
+    }
 })
 
 export default styles

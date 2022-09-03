@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image,  TouchableOpacity, FlatList } from 'react-native';
 import styles from './userInformations.styles.js'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { ActivityIndicator } from '@react-native-material/core';
 import Comment from '../../components/Comment/comment.js';
+import {Button, TextInput} from '@react-native-material/core';
 
 
 const UserInformations = (props) => {
@@ -14,6 +15,9 @@ const UserInformations = (props) => {
 
     //user reviews
     const [userReviews, setUserReviews] = useState()
+
+    //new user review
+    const [newReview, setNewReview] = useState()
 
     useEffect(() => {
         getUserInformations()
@@ -51,9 +55,12 @@ const UserInformations = (props) => {
         })
     }
 
+    //user reviews visibility
+    const [isVisible, setIsVisible] = useState(true)
+
     return(
         <View style={styles.container}>
-            <View style={styles.infoContainer}>{console.log(userReviews)}
+            <View style={styles.infoContainer}>
                 <Text style={styles.infoText}> Username: {userInformations ? userInformations.username : <ActivityIndicator size="small" color="error" />} </Text>
                 <Text style={styles.infoText}> Name: {userInformations ? userInformations.name : <ActivityIndicator size="small" color="error" />} </Text>
                 <Text style={styles.infoText}> Surname: {userInformations ? userInformations.surname : <ActivityIndicator size="small" color="error" />} </Text>
@@ -61,18 +68,30 @@ const UserInformations = (props) => {
                 <Text style={styles.infoText}> Phone: {userInformations ? userInformations.phone : <ActivityIndicator size="small" color="error" />} </Text>
             </View>
 
-            <Text style={{fontSize: 24, fontWeight: "600", alignSelf: "center"}}>User Reviews</Text>
-            <FlatList
-                data={userReviews}
-                renderItem={({item}) => 
-                    <Comment
-                        userId={item.reviewerId}
-                        commentContent={item.reviewContent}
-                    />
-                }
-                keyExtractor={(item) => item.userreviewId}
-                style={{marginBottom: 100}}
-            />
+            {
+                isVisible ? (
+                    <View>
+                        <Text style={{fontSize: 24, fontWeight: "600", alignSelf: "center", marginTop: 20}}>User Reviews</Text>
+                        <FlatList
+                            data={userReviews}
+                            renderItem={({item}) => 
+                                <Comment
+                                    userId={item.reviewerId}
+                                    commentContent={item.reviewContent}
+                                />
+                            }
+                            keyExtractor={(item) => item.userreviewId}
+                            style={{marginBottom: 100}}
+                        />
+                    </View>
+                ) : null
+            }
+
+            <View style={styles.newCommentView}>
+                <TextInput variant="outlined" label="Make a comment" style={styles.newComment} onChangeText={val => setNewReview(val)} />
+
+                <Button uppercase={false} title="Add" style={styles.makeCommentButton} onPress={() => console.log(newReview)} />
+            </View>
         </View>
     )
 }
