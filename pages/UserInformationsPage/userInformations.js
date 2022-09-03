@@ -6,6 +6,7 @@ import axios from 'axios';
 import { ActivityIndicator } from '@react-native-material/core';
 import Comment from '../../components/Comment/comment.js';
 import {Button, TextInput} from '@react-native-material/core';
+import uuid from 'react-native-uuid';
 
 
 const UserInformations = (props) => {
@@ -55,6 +56,26 @@ const UserInformations = (props) => {
         })
     }
 
+    //add new review with axios
+    const addNewReview = () => {
+        AsyncStorage.getItem("userId").then(userId => {
+            axios.post('https://bezkoder-server.herokuapp.com/api/insertReview', {
+                reviewedId: props.route.params.userId,
+                reviewerId: userId,
+                reviewContent: newReview
+            }).then((response) => { //feedback from api
+                userReviews.push({
+                    userreviewId: uuid.v4(),
+                    reviewerId: userId,
+                    reviewContent: newReview,
+                    reviewTime: "just now"
+                })
+                setUserReviews(userReviews)
+                setNewReview("")
+            })
+        })
+    }
+
     //user reviews visibility
     const [isVisible, setIsVisible] = useState(true)
 
@@ -68,29 +89,25 @@ const UserInformations = (props) => {
                 <Text style={styles.infoText}> Phone: {userInformations ? userInformations.phone : <ActivityIndicator size="small" color="error" />} </Text>
             </View>
 
-            {
-                isVisible ? (
-                    <View>
-                        <Text style={{fontSize: 24, fontWeight: "600", alignSelf: "center", marginTop: 20}}>User Reviews</Text>
-                        <FlatList
-                            data={userReviews}
-                            renderItem={({item}) => 
-                                <Comment
-                                    userId={item.reviewerId}
-                                    commentContent={item.reviewContent}
-                                />
-                            }
-                            keyExtractor={(item) => item.userreviewId}
-                            style={{marginBottom: 100}}
+            <View>
+                <Text style={{fontSize: 24, fontWeight: "600", alignSelf: "center", marginTop: 20}}>User Reviews</Text>
+                <FlatList
+                    data={userReviews}
+                    renderItem={({item}) => 
+                        <Comment
+                            userId={item.reviewerId}
+                            commentContent={item.reviewContent}
                         />
-                    </View>
-                ) : null
-            }
+                    }
+                    keyExtractor={(item) => item.userreviewId}
+                    style={{height: "40%"}}
+                />
+            </View>
 
             <View style={styles.newCommentView}>
-                <TextInput variant="outlined" label="Make a comment" style={styles.newComment} onChangeText={val => setNewReview(val)} />
+                <TextInput variant="outlined" label="Make a comment" style={styles.newComment} onChangeText={val => setNewReview(val)} value={newReview} />
 
-                <Button uppercase={false} title="Add" style={styles.makeCommentButton} onPress={() => console.log(newReview)} />
+                <Button uppercase={false} title="Add" style={styles.makeCommentButton} onPress={() => addNewReview()} />
             </View>
         </View>
     )
